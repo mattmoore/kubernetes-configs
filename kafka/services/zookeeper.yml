@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper
+spec:
+  selector:
+    app: kafka
+    node: zookeeper
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 2181
+      nodePort: 30000

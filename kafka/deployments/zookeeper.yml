@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka
+  name: zookeeper
   labels:
     app: kafka
+    node: zookeeper
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: kafka
+      node: zookeeper
   template:
     metadata:
       labels:
         app: kafka
+        node: zookeeper
     spec:
       containers:
       - name: zookeeper
-        image: mattmoore/kafka-development
+        image: mattmoore/kafka-zookeeper
+        command: ['/docker-entrypoint.sh']
         ports:
         - containerPort: 2181
-      - name: kafka
-        image: mattmoore/kafka-development
-        ports:
-        - containerPort: 9092
